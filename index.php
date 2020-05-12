@@ -6,7 +6,8 @@ define('DB_HOST', getenv('MYSQL_SERVICE_HOST'));
 
 $link = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD);
 if (!$link) {
-    die('Could not connect: ' . mysqli_error());
+	die('Could not connect: ' . mysqli_connect_error());
+	exit();
 }
 echo 'Connected successfully';
 mysqli_close($link);
