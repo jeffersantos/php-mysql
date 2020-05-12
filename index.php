@@ -1,12 +1,16 @@
 <?php
-$banco = getenv('MYSQL_DATABASE');
-$usuario = getenv('MYSQL_USER');
-$senha = getenv('MYSQL_PASSWORD');
-$hostname = getenv('MYSQL_SERVICE_HOST');
-$conn = mysql_connect($hostname,$usuario,$senha); mysql_select_db($banco) or die( “Não foi possível conectar ao banco MySQL”);
-if (!$conn) {echo “Não foi possível conectar ao banco MySQL.
-“; exit;}
-else {echo “Parabéns!! A conexão ao banco de dados ocorreu normalmente!.
-“;}
-mysql_close();
+define('DB_NAME', getenv('MYSQL_DATABASE'));
+define('DB_USER', getenv('MYSQL_USER'));
+define('DB_PASSWORD', getenv('MYSQL_PASSWORD'));
+define('DB_HOST', getenv('MYSQL_SERVICE_HOST'));
+
+$link = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD);
+if (!$link) {
+    die('Could not connect: ' . mysqli_error());
+}
+echo 'Connected successfully';
+mysqli_close($link);
+
 ?>
+
+
